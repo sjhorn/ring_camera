@@ -345,7 +345,7 @@ The TypeScript `ring-client-api` includes push notification support using `@ener
   - [ ] Configure Firebase projects for each platform
   - [ ] Register with Ring's FCM project using these credentials:
     ```
-    apiKey: 'AIzaSyCv-hdFBmmdBBJadNy-TFwB-xN_H5m3Bk8'
+    apiKey: '<key-here>'
     projectId: 'ring-17770'
     messagingSenderId: '876313859327'
     appId: '1:876313859327:android:e10ec6ddb3c81f39'
