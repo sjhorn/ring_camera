@@ -1,6 +1,6 @@
-# ring_client_api_flutter_example
+# ring_camera_example
 
-Example Flutter app demonstrating the use of `ring_client_api_flutter` for Ring camera streaming.
+Example Flutter app demonstrating the use of `ring_camera` for Ring camera streaming.
 
 ## Features
 

@@ -80,6 +80,8 @@ class FlutterPeerConnection implements BasicPeerConnection {
     };
 
     pc.onTrack = (event) {
+      _log.fine('onTrack: ${event.track.kind} track received, ${event.streams.length} stream(s)');
+
       if (event.streams.isNotEmpty && !onRemoteStream.isClosed) {
         onRemoteStream.add(event.streams[0]);
       }

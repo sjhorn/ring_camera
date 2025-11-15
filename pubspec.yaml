@@ -1,6 +1,6 @@
 name: ring_camera
 description: Flutter widgets for Ring camera streaming with full WebRTC support. View live video from Ring cameras in your Flutter app.
-version: 0.1.0
+version: 0.1.1
 homepage: https://github.com/sjhorn/ring_camera
 repository: https://github.com/sjhorn/ring_camera
 issue_tracker: https://github.com/sjhorn/ring_camera/issues
@@ -17,7 +17,7 @@ dependencies:
   ring_client_api: ^0.1.0
 
   # WebRTC support
-  flutter_webrtc: ^0.11.7
+  flutter_webrtc: ^1.2.0
 
   # Reactive programming
   rxdart: ^0.28.0

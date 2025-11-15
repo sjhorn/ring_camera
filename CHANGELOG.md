@@ -1,3 +1,27 @@
+## 0.1.1
+
+### Dependencies
+
+- **Upgraded flutter_webrtc** from ^0.11.7 to ^1.2.0
+  - Updated to WebRTC-SDK m137 (137.7151.04)
+  - Improved Android device compatibility with 16kb page support
+  - Enhanced local recording API for Darwin and Android
+  - Better texture-based rendering for web platform
+  - H265/HEVC codec support
+  - Improved logger integration
+
+### Improvements
+
+- Enhanced onTrack logging for better debugging
+- Verified compatibility with latest WebRTC stack
+- All tests passing with new version
+
+### Testing
+
+- Confirmed video streaming works on macOS with flutter_webrtc 1.2.0
+- No breaking changes in API
+- Connection stability maintained
+
 ## 0.1.0
 
 ### Package Rename
