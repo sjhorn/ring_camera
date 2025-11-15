@@ -1,3 +1,31 @@
+## 0.1.3
+
+### New Examples
+
+- **Added simple_live_stream example** - Minimal (~130 lines) example showing live video streaming
+  - Simple .env file configuration (refresh_token, camera_id)
+  - Clear setup instructions
+  - Demonstrates RingCameraViewer widget usage
+
+- **Added simple_snapshot example** - Minimal (~130 lines) example showing periodic snapshots
+  - Battery-friendly alternative to live streaming
+  - 10-second refresh interval (configurable)
+  - Demonstrates RingCameraSnapshotViewer widget usage
+
+### Improvements
+
+- **Standardized .env configuration** across all examples
+  - Consistent naming: `refresh_token` and `camera_id` (lowercase)
+  - All examples include .env.example templates
+
+- **Added macOS network entitlements** to new examples
+  - Both Debug and Release configurations properly configured
+  - Ready to run without permission errors
+
+- **Updated AGENTS.md** with macOS entitlements guidelines
+  - Clear instructions for future example development
+  - Prevents common network permission issues
+
 ## 0.1.2
 
 ### Bug Fixes

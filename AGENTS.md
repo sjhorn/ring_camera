@@ -125,10 +125,31 @@ dart pub publish
 ---
 
 ## Agent & Automation Tips
-- Place this `AGENTS.md` at the root—agents will pick it up automatically.  
-- Agents should avoid modifying files outside of the package directories without explicit instruction.  
-- Ensure agents run the setup commands first, and then apply changes (formatting, tests, code) so they respect project conventions.  
+- Place this `AGENTS.md` at the root—agents will pick it up automatically.
+- Agents should avoid modifying files outside of the package directories without explicit instruction.
+- Ensure agents run the setup commands first, and then apply changes (formatting, tests, code) so they respect project conventions.
 - If the package becomes part of a mono-repo, consider adding nested `AGENTS.md` in sub-packages for more granular guidance.
+
+### macOS Network Entitlements
+When creating new Flutter examples that require network access (API calls, WebRTC, etc.):
+- **ALWAYS** add network entitlements to both Debug and Release configurations
+- Files to update:
+  - `macos/Runner/DebugProfile.entitlements` — Add `com.apple.security.network.client` (and `com.apple.security.network.server` if needed)
+  - `macos/Runner/Release.entitlements` — Add `com.apple.security.network.client`
+- Example DebugProfile.entitlements:
+  ```xml
+  <key>com.apple.security.network.server</key>
+  <true/>
+  <key>com.apple.security.network.client</key>
+  <true/>
+  ```
+- Example Release.entitlements:
+  ```xml
+  <key>com.apple.security.app-sandbox</key>
+  <true/>
+  <key>com.apple.security.network.client</key>
+  <true/>
+  ```
 
 ---
 
