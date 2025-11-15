@@ -26,10 +26,10 @@ Flutter companion package for ring_client_api providing full WebRTC video stream
   - [x] DEVELOPMENT.md
   - [x] example/README.md
 - [x] Tests created
-- [x] Analyzer passing (0 errors, 1 expected warning)
-- [ ] **Wait for ring_client_api to be published**
-- [ ] Update pubspec.yaml dependency to `ring_client_api: ^0.1.0`
-- [ ] Run final checks
+- [x] Analyzer passing (0 errors, 0 warnings)
+- [x] **Wait for ring_client_api to be published**
+- [x] Update pubspec.yaml dependency to `ring_client_api: ^0.1.0`
+- [x] Run final checks
 - [ ] Publish to pub.dev
 
 ---

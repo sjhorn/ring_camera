@@ -44,7 +44,7 @@ Flutter widgets for Ring camera streaming with full WebRTC support.
 
 #### Documentation
 
-- Comprehensive README with setup instructions
+- Complete README with setup instructions
 - Platform-specific configuration guides
 - Troubleshooting section
 - Security best practices
