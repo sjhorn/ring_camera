@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:logging/logging.dart';
 import 'package:ring_camera/ring_camera.dart';
 import 'camera_viewer_page.dart';
 
@@ -12,6 +13,12 @@ import 'camera_viewer_page.dart';
 /// - View camera snapshots
 /// - Control camera features (light, siren)
 Future<void> main() async {
+  // Configure logging to see INFO level messages
+  Logger.root.level = Level.ALL;
+  Logger.root.onRecord.listen((record) {
+    debugPrint('[${record.loggerName}] ${record.level.name}: ${record.message}');
+  });
+
   // Load .env file for testing (optional)
   // Create a .env file in the parent directory with your refresh_token
   try {

@@ -1,3 +1,26 @@
+## 0.1.2
+
+### Bug Fixes
+
+- **Fixed 15-second stream disconnection issue**
+  - Root cause: Session messages (ping, activate_session, stream_options, activate_camera_speaker) were missing required `dialog_id` field
+  - Ring signaling server requires `dialog_id` in all session messages to properly route and acknowledge them
+  - Server was timing out waiting for pings because it couldn't identify the session
+  - Now all session messages include `dialog_id` matching TypeScript implementation
+  - Streams now stay alive indefinitely with successful ping/pong exchanges
+
+### Improvements
+
+- Enhanced logging for better debugging of connection lifecycle
+- Added INFO-level logging configuration in example app
+- More detailed ping/pong message logging
+
+### Technical Details
+
+- Updated `_sendSessionMessage()` to automatically add `dialog_id` to all session messages
+- Fixed activate_session timing (now sent after SDP answer, not after session creation)
+- Consistent session message format across all methods
+
 ## 0.1.1
 
 ### Dependencies

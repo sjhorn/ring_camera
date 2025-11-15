@@ -141,7 +141,9 @@ class FlutterWebrtcConnection {
   void _startPingTimer() {
     _pingTimer = Timer.periodic(const Duration(seconds: 5), (_) {
       if (!_hasEnded && _sessionId != null) {
-        _sendMessage({
+        _log.info('Sending ping to keep connection alive');
+        // Use _sendSessionMessage to ensure dialog_id is included
+        _sendSessionMessage({
           'method': 'ping',
           'body': {
             'doorbot_id': _camera.id,
@@ -199,14 +201,15 @@ class FlutterWebrtcConnection {
         _sessionId = msg.body.sessionId;
         _onSessionIdController.add(_sessionId!);
         _log.info('Session created: $_sessionId');
-
-        // Send activation message to start streaming
-        _activate();
       }
       else if (incomingMessage.method == 'sdp') {
         final msg = incomingMessage.asAnswer!;
         _log.info('Received SDP answer from camera');
         _handleAnswer(msg.body.sdp);
+
+        // IMPORTANT: Send activation AFTER accepting answer (required by Ring protocol)
+        // This keeps the stream alive longer than 70 seconds
+        _activate();
       }
       else if (incomingMessage.method == 'ice') {
         final msg = incomingMessage.asIceCandidate!;
@@ -306,6 +309,8 @@ class FlutterWebrtcConnection {
   }
 
   void _activate() {
+    _log.info('ACTIVATING session (keeps stream alive >70s)');
+
     // IMPORTANT: Send TWO separate messages (required by Ring signaling protocol)
     // 1. activate_session - Activates the streaming session
     _sendSessionMessage({
@@ -315,6 +320,7 @@ class FlutterWebrtcConnection {
         'session_id': _sessionId,
       },
     });
+    _log.info('Sent activate_session message');
 
     // 2. stream_options - Configures audio/video preferences
     _sendSessionMessage({
@@ -326,16 +332,21 @@ class FlutterWebrtcConnection {
         'video_enabled': true,
       },
     });
-
-    _log.info('Session activated with audio and video enabled');
+    _log.info('Sent stream_options message - session fully activated');
   }
 
   void _sendSessionMessage(Map<String, dynamic> message) {
+    // IMPORTANT: Add dialog_id to all session messages (required by Ring protocol)
+    final messageWithDialogId = {
+      ...message,
+      'dialog_id': _dialogId,
+    };
+
     if (_sessionId != null) {
-      _sendMessage(message);
+      _sendMessage(messageWithDialogId);
     } else {
       // Queue message until session is created
-      onSessionId.first.then((_) => _sendMessage(message));
+      onSessionId.first.then((_) => _sendMessage(messageWithDialogId));
     }
   }
 
@@ -380,7 +391,7 @@ class FlutterWebrtcConnection {
       return;
     }
 
-    _sendMessage({
+    _sendSessionMessage({
       'method': 'activate_camera_speaker',
       'body': {
         'doorbot_id': _camera.id,
