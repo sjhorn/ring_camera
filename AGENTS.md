@@ -51,12 +51,13 @@ dart analyze
 # Build the package (if relevant, e.g., for Flutter or platform-specific)
 dart compile <executable> --output=...
 
-# Publish to pub.dev
-dart pub publish --dry-run
-dart pub publish
+# Publish to pub.dev (this is a Flutter package)
+flutter pub publish --dry-run
+echo "y" | flutter pub publish
 ```
 
 > **Note**: Ensure version updates in `pubspec.yaml`, update `CHANGELOG.md`, and tag the release in Git.
+> For Flutter packages, use `flutter pub publish` instead of `dart pub publish`.
 
 ---
 
