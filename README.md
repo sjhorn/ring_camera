@@ -77,14 +77,18 @@ RingCameraSnapshotViewer(
 )
 ```
 
-## Example App
+## Examples
 
-See the [example](example/) directory for a complete Flutter app demonstrating:
-- Camera list with Ring authentication
-- Live video streaming
-- Snapshot viewer
-- Camera controls (light, siren)
-- Two-way audio support
+The package includes three examples demonstrating different use cases:
+
+### Simple Examples
+- **[simple_live_stream](example/simple_live_stream/)** - Minimal (~130 lines) live streaming example
+- **[simple_snapshot](example/simple_snapshot/)** - Minimal (~130 lines) snapshot viewer example
+
+### Full Example
+- **[camera_viewer](example/camera_viewer/)** - Complete app with camera list, live streaming, snapshots, and controls
+
+Each example includes its own README with setup instructions.
 
 ## Logging
 
@@ -105,17 +109,58 @@ For production apps, the default INFO level is recommended.
 ## Documentation
 
 - [API Reference](https://pub.dev/documentation/ring_camera/latest/)
-- [Core Package](https://pub.dev/packages/ring_client_api)
-- [WebRTC Options Guide](https://github.com/sjhorn/ring_client_api/blob/main/WEBRTC_OPTIONS.md)
-- [TypeScript Differences](https://github.com/sjhorn/ring_client_api/blob/main/TYPESCRIPT_DIFFERENCES.md)
+- [Core Package (ring_client_api)](https://pub.dev/packages/ring_client_api)
+- [Example Apps](example/) - Three examples showing different use cases
+- [Platform Configuration](#platform-configuration) - Setup for macOS, iOS, and other platforms
+
+## Platform Configuration
+
+### macOS
+
+Add network entitlements to both Debug and Release configurations:
+
+**`macos/Runner/DebugProfile.entitlements`**
+```xml
+<key>com.apple.security.network.client</key>
+<true/>
+<key>com.apple.security.network.server</key>
+<true/>
+```
+
+**`macos/Runner/Release.entitlements`**
+```xml
+<key>com.apple.security.network.client</key>
+<true/>
+```
+
+If using two-way audio, also add microphone permission:
+```xml
+<key>com.apple.security.device.audio-input</key>
+<true/>
+```
+
+### iOS
+
+Add camera and microphone permissions to `ios/Runner/Info.plist`:
+
+```xml
+<key>NSCameraUsageDescription</key>
+<string>This app requires camera access to display Ring camera video streams.</string>
+
+<key>NSMicrophoneUsageDescription</key>
+<string>This app requires microphone access to send audio during Ring camera calls.</string>
+```
+
+### Android, Web, Windows, Linux
+
+These platforms work out of the box. For Android, permissions are handled automatically by flutter_webrtc.
 
 ## Requirements
 
 - Flutter 3.0 or later
 - Dart 3.0 or later
-- Platform-specific permissions (camera/microphone)
-
-See full documentation for platform-specific setup instructions.
+- ring_client_api ^0.1.0
+- flutter_webrtc ^1.2.0
 
 ## License
 
