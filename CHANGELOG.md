@@ -1,3 +1,21 @@
+## 0.1.4
+
+### Documentation
+
+- **Enhanced README.md** with platform-specific configuration
+  - Added comprehensive Platform Configuration section
+  - Documented macOS network entitlements (Debug and Release)
+  - Documented iOS camera and microphone permissions
+  - Updated Examples section to list all three examples
+  - Fixed broken documentation links
+  - Added specific version requirements
+
+### Improvements
+
+- **Updated AGENTS.md** with Flutter publishing instructions
+  - Added `flutter pub publish` command (instead of `dart pub publish`)
+  - Documented automated publishing with `echo "y" | flutter pub publish`
+
 ## 0.1.3
 
 ### New Examples
