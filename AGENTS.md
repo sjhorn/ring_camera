@@ -131,7 +131,9 @@ echo "y" | flutter pub publish
 - Ensure agents run the setup commands first, and then apply changes (formatting, tests, code) so they respect project conventions.
 - If the package becomes part of a mono-repo, consider adding nested `AGENTS.md` in sub-packages for more granular guidance.
 
-### macOS Network Entitlements
+### Platform Permissions
+
+#### macOS Network Entitlements
 When creating new Flutter examples that require network access (API calls, WebRTC, etc.):
 - **ALWAYS** add network entitlements to both Debug and Release configurations
 - Files to update:
@@ -151,6 +153,23 @@ When creating new Flutter examples that require network access (API calls, WebRT
   <key>com.apple.security.network.client</key>
   <true/>
   ```
+
+#### Android Permissions
+When creating new Flutter examples for Android:
+- **ALWAYS** add required permissions to `android/app/src/main/AndroidManifest.xml`
+- Add before the `<application>` tag:
+  ```xml
+  <!-- Permissions for Ring camera streaming -->
+  <uses-permission android:name="android.permission.INTERNET" />
+  <uses-permission android:name="android.permission.CAMERA" />
+  <uses-permission android:name="android.permission.RECORD_AUDIO" />
+  <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+  <uses-feature android:name="android.hardware.camera" android:required="false" />
+  <uses-feature android:name="android.hardware.camera.autofocus" android:required="false" />
+  ```
+- Note: Camera feature is `required="false"` since we're viewing Ring cameras, not using the device camera
 
 ---
 

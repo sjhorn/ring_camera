@@ -151,9 +151,27 @@ Add camera and microphone permissions to `ios/Runner/Info.plist`:
 <string>This app requires microphone access to send audio during Ring camera calls.</string>
 ```
 
-### Android, Web, Windows, Linux
+### Android
 
-These platforms work out of the box. For Android, permissions are handled automatically by flutter_webrtc.
+Add permissions to `android/app/src/main/AndroidManifest.xml`:
+
+```xml
+<!-- Permissions for Ring camera streaming -->
+<uses-permission android:name="android.permission.INTERNET" />
+<uses-permission android:name="android.permission.CAMERA" />
+<uses-permission android:name="android.permission.RECORD_AUDIO" />
+<uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+<uses-feature android:name="android.hardware.camera" android:required="false" />
+<uses-feature android:name="android.hardware.camera.autofocus" android:required="false" />
+```
+
+**Note:** The camera feature is marked as `required="false"` so the app can still be installed on devices without a camera (since you're viewing Ring cameras, not using the device's camera).
+
+### Web, Windows, Linux
+
+These platforms work out of the box with no additional configuration required.
 
 ## Requirements
 
