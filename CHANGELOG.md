@@ -1,3 +1,28 @@
+## 0.1.5
+
+### Platform Support
+
+- **Added Android platform to camera_viewer example**
+  - Complete Android manifest with all required permissions
+  - Internet, Camera, Record Audio, Modify Audio Settings, Network State
+  - Camera feature marked as optional (required="false")
+
+- **Added iOS platform to camera_viewer example**
+  - iOS project files and configuration
+  - Ready for NSCameraUsageDescription and NSMicrophoneUsageDescription
+
+### Documentation
+
+- **Enhanced README.md** with Android permissions configuration
+  - Detailed Android permissions section
+  - Explanation of optional camera feature
+  - Separated platform documentation (macOS, iOS, Android, Web/Windows/Linux)
+
+- **Updated AGENTS.md** with Android guidelines
+  - Reorganized Platform Permissions section
+  - Added Android permissions subsection with examples
+  - Guidelines for future Android development
+
 ## 0.1.4
 
 ### Documentation
