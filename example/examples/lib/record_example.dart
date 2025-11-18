@@ -7,8 +7,7 @@ import 'package:path/path.dart' as path;
 
 /// Record Example
 ///
-/// Records video from a Ring camera to a local file.
-/// Similar to record-example.ts which records a 10-second video clip.
+/// Records 10-second video clips from a Ring camera to a local file.
 class RecordExample extends StatefulWidget {
   const RecordExample({super.key});
 
@@ -98,7 +97,7 @@ class _RecordExampleState extends State<RecordExample> {
 
       debugPrint('Starting recording to: $outputPath');
 
-      // Record 10 seconds of video (like record-example.ts)
+      // Record 10 seconds of video
       await _camera!.recordToFile(outputPath, 10);
 
       debugPrint('Recording complete: $outputPath');
@@ -250,8 +249,8 @@ class _RecordExampleState extends State<RecordExample> {
 
             const SizedBox(height: 32),
             const Text(
-              'This example uses camera.recordToFile() similar to\n'
-              'record-example.ts in the TypeScript examples',
+              'This example uses camera.recordToFile() to capture\n'
+              '10-second video clips from your Ring camera',
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 12, color: Colors.grey),
             ),

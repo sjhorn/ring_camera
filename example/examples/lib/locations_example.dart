@@ -5,7 +5,6 @@ import 'package:ring_client_api/ring_client_api.dart';
 /// Locations API Example
 ///
 /// Demonstrates the Locations API: listing locations, devices, and monitoring status.
-/// Similar to api-example.ts in the TypeScript examples.
 class LocationsExample extends StatefulWidget {
   const LocationsExample({super.key});
 

@@ -52,14 +52,12 @@ class Example {
   final String description;
   final IconData icon;
   final Widget page;
-  final String? tsEquivalent;
 
   const Example({
     required this.title,
     required this.description,
     required this.icon,
     required this.page,
-    this.tsEquivalent,
   });
 }
 
@@ -72,49 +70,42 @@ class ExamplesHomePage extends StatelessWidget {
       description: 'View live video stream from a Ring camera',
       icon: Icons.videocam,
       page: const LiveStreamExample(),
-      tsEquivalent: 'Uses streamVideo() similar to browser-example.ts',
     ),
     Example(
       title: 'Snapshot',
       description: 'Take periodic snapshots from a Ring camera',
       icon: Icons.camera_alt,
       page: const SnapshotExample(),
-      tsEquivalent: 'Uses getSnapshot() for periodic images',
     ),
     Example(
       title: 'Record to File',
       description: 'Record 10-second video clips to local files',
       icon: Icons.fiber_manual_record,
       page: const RecordExample(),
-      tsEquivalent: 'record-example.ts',
     ),
     Example(
       title: 'Events & Notifications',
       description: 'Listen for motion, doorbell, and notification events',
       icon: Icons.notifications_active,
       page: const EventsExample(),
-      tsEquivalent: 'example.ts',
     ),
     Example(
       title: 'Locations API',
       description: 'List locations, devices, and connection status',
       icon: Icons.location_on,
       page: const LocationsExample(),
-      tsEquivalent: 'example.ts and api-example.ts',
     ),
     Example(
       title: 'Camera History',
       description: 'View camera events history and recording URLs',
       icon: Icons.history,
       page: const HistoryExample(),
-      tsEquivalent: 'api-example.ts',
     ),
     Example(
       title: 'Return Audio',
       description: 'Send audio to camera speaker (two-way audio)',
       icon: Icons.mic,
       page: const ReturnAudioExample(),
-      tsEquivalent: 'return-audio-example.ts',
     ),
   ];
 
@@ -140,23 +131,9 @@ class ExamplesHomePage extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              subtitle: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const SizedBox(height: 4),
-                  Text(example.description),
-                  if (example.tsEquivalent != null) ...[
-                    const SizedBox(height: 4),
-                    Text(
-                      'TypeScript: ${example.tsEquivalent}',
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: Colors.grey[400],
-                        fontStyle: FontStyle.italic,
-                      ),
-                    ),
-                  ],
-                ],
+              subtitle: Padding(
+                padding: const EdgeInsets.only(top: 4),
+                child: Text(example.description),
               ),
               trailing: const Icon(Icons.arrow_forward_ios),
               onTap: () {

@@ -28,5 +28,9 @@
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>This app needs access to your microphone for two-way audio communication with Ring cameras.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>This app needs access to your camera for video streaming with Ring devices.</string>
 </dict>
 </plist>

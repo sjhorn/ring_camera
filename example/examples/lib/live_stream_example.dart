@@ -5,7 +5,7 @@ import 'package:ring_camera/ring_camera.dart';
 /// Live Stream Example
 ///
 /// Shows live video stream from a Ring camera using RingCameraViewer widget.
-/// Similar to browser-example.ts which creates an HLS stream viewable in browser.
+/// Creates an HLS stream viewable in real-time.
 class LiveStreamExample extends StatefulWidget {
   const LiveStreamExample({super.key});
 

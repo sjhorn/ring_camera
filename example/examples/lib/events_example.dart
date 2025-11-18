@@ -6,8 +6,7 @@ import 'dart:async';
 /// Events & Notifications Example
 ///
 /// Listens for camera events like motion detection and doorbell presses.
-/// Also demonstrates refresh token update handling.
-/// Similar to example.ts in the TypeScript examples.
+/// Also demonstrates refresh token update handling and location connection status.
 class EventsExample extends StatefulWidget {
   const EventsExample({super.key});
 
@@ -207,8 +206,8 @@ class _EventsExampleState extends State<EventsExample> {
           padding: const EdgeInsets.all(8),
           color: Colors.black26,
           child: const Text(
-            'Similar to example.ts - listens for onNewNotification,\n'
-            'onRefreshTokenUpdated, and location connection status',
+            'Listens for onNewNotification, onRefreshTokenUpdated,\n'
+            'and location connection status events',
             textAlign: TextAlign.center,
             style: TextStyle(fontSize: 10, color: Colors.grey),
           ),

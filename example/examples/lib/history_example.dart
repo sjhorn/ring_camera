@@ -4,8 +4,7 @@ import 'package:ring_client_api/ring_client_api.dart';
 
 /// Camera History Example
 ///
-/// Demonstrates fetching camera event history and getting recording URLs.
-/// Similar to api-example.ts in the TypeScript examples.
+/// Demonstrates fetching camera event history and getting transcoded/untranscoded recording URLs.
 class HistoryExample extends StatefulWidget {
   const HistoryExample({super.key});
 
@@ -54,7 +53,7 @@ class _HistoryExampleState extends State<HistoryExample> {
         orElse: () => throw Exception('Camera $cameraId not found'),
       );
 
-      // Get camera events (similar to api-example.ts)
+      // Get camera events
       final eventsResponse = await camera.getEvents(
         CameraEventOptions(
           limit: 20,
@@ -214,7 +213,7 @@ class _HistoryExampleState extends State<HistoryExample> {
           padding: const EdgeInsets.all(8),
           color: Colors.black26,
           child: const Text(
-            'Similar to api-example.ts - uses getEvents() and getRecordingUrl()\n'
+            'Uses getEvents() and getRecordingUrl()\n'
             'Tap play button to get recording URLs',
             textAlign: TextAlign.center,
             style: TextStyle(fontSize: 10, color: Colors.grey),
