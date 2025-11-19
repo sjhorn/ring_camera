@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:ring_client_api/ring_client_api.dart';
+import 'package:ring_camera/ring_camera.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as path;
 
@@ -22,6 +22,7 @@ class _RecordExampleState extends State<RecordExample> {
   bool _recording = false;
   String? _recordingPath;
   String? _lastRecordedFile;
+  String? _recordingProgress;
 
   @override
   void initState() {
@@ -78,6 +79,7 @@ class _RecordExampleState extends State<RecordExample> {
       _error = null;
       _recordingPath = null;
       _lastRecordedFile = null;
+      _recordingProgress = 'Initializing...';
     });
 
     try {
@@ -97,8 +99,23 @@ class _RecordExampleState extends State<RecordExample> {
 
       debugPrint('Starting recording to: $outputPath');
 
-      // Record 10 seconds of video
-      await _camera!.recordToFile(outputPath, 10);
+      // Record 10 seconds of video using ring_camera recorder
+      await recordCameraToFile(
+        camera: _camera!,
+        outputPath: outputPath,
+        durationSeconds: 10,
+        onProgress: (message) {
+          debugPrint('Recording progress: $message');
+          if (mounted) {
+            setState(() {
+              _recordingProgress = message;
+            });
+          }
+        },
+        onError: (error) {
+          debugPrint('Recording error: $error');
+        },
+      );
 
       debugPrint('Recording complete: $outputPath');
 
@@ -189,6 +206,14 @@ class _RecordExampleState extends State<RecordExample> {
               const CircularProgressIndicator(),
               const SizedBox(height: 16),
               const Text('Recording 10 seconds of video...'),
+              if (_recordingProgress != null) ...[
+                const SizedBox(height: 8),
+                Text(
+                  _recordingProgress!,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(fontSize: 14, color: Colors.blue),
+                ),
+              ],
               if (_recordingPath != null) ...[
                 const SizedBox(height: 8),
                 Text(

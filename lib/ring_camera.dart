@@ -43,6 +43,9 @@ library;
 export 'src/flutter_peer_connection.dart';
 export 'src/webrtc_connection.dart';
 
+// Recording
+export 'src/ring_camera_recorder.dart';
+
 // Widgets
 export 'src/ring_camera_viewer.dart';
 

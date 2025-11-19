@@ -1,3 +1,36 @@
+## 0.1.6
+
+### New Features
+
+- **Added video recording support** - Record video from Ring cameras to local files
+  - New `RingCameraRecorder` class for managing recording sessions
+  - Frame capture from WebRTC video stream using `captureFrame()`
+  - FFmpeg encoding using ffmpeg_kit_flutter_new
+  - Configurable duration with progress callbacks
+  - Helper function `recordCameraToFile()` for simple usage
+  - Automatic framerate adjustment to match actual capture performance
+  - Cross-platform support (macOS, iOS, Android)
+
+### Dependencies
+
+- **Added ffmpeg_kit_flutter_new** ^4.1.0 for video encoding
+- **Added path_provider** ^2.1.0 for file system access
+
+### Examples
+
+- **Updated record_example** to use new ring_camera recording API
+  - Changed from ring_client_api (stub) to ring_camera (full implementation)
+  - Added progress indicators showing recording status
+  - Shows recording path and completion status
+
+### Technical Details
+
+- Frame capture loop with time-based recording (accurate duration)
+- Dynamic FPS calculation based on actual capture performance
+- FFmpeg encoding with H.264 codec, yuv420p pixel format
+- Temporary frame storage with automatic cleanup
+- Smart video track detection (waits for streams with video tracks)
+
 ## 0.1.5
 
 ### Platform Support
